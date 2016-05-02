@@ -1,0 +1,1 @@
+{bundle: true, mainExport: "test", minCurNodeVer: "v0.0.1"}

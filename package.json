@@ -1,0 +1,29 @@
+{
+  "name": "titor-util",
+  "version": "0.0.0",
+  "description": "utilities for the Titor build and bundle assistant",
+  "author": "Grant Snodgrass <meeber@gametypething.com>",
+  "license": "MIT",
+  "main": "index.js",
+  "repository": "meeber/titor-util",
+  "engines": {
+    "node": ">=0.12.0"
+  },
+  "dependencies": {
+    "js-yaml": "^3.6.0",
+    "semver": "^5.1.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^2.9.0",
+    "eslint-config-tt": "^1.2.0",
+    "istanbul": "^0.4.3",
+    "mocha": "^2.4.5",
+    "shelljs": "^0.7.0"
+  },
+  "scripts": {
+    "coverage": "rm -R -f coverage/ && istanbul cover _mocha",
+    "lint": "eslint --fix .",
+    "test": "mocha && npm run lint"
+  }
+}

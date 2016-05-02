@@ -1,0 +1,6 @@
+{
+  bundle: true,
+  mainExport: "test",
+  minCurNodeVer: "v999.0.0",
+  shimCheck: "NoExists",
+}
