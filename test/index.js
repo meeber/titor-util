@@ -17,7 +17,7 @@ describe("index.js", function () {
   });
 
   describe(".clearCache", function () {
-    it("should reset config so it can be reloaded from file", function () {
+    it("should cause next .loadConfig call to reload", function () {
       var config = util.loadConfig();
 
       util.clearCache();
@@ -63,6 +63,11 @@ describe("index.js", function () {
       expect(util.loadConfig()).to.equal(util.loadConfig());
     });
 
+    it("should, if reload is true, reload file if called multiple times",
+    function () {
+      expect(util.loadConfig()).to.not.equal(util.loadConfig(true));
+    });
+
     it("should throw if no .titorrc", function () {
       sh.rm(".titorrc");
 
@@ -70,9 +75,21 @@ describe("index.js", function () {
     });
 
     it("should throw if invalid .titorrc", function () {
-      sh.cp("test/resource/bad.titorrc", ".titorrc");
+      sh.cp("test/resource/bad-format.titorrc", ".titorrc");
 
       expect(util.loadConfig).to.throw("Invalid .titorrc");
+    });
+
+    it("should throw if invalid minCurNodeVer", function () {
+      sh.cp("test/resource/bad-version.titorrc", ".titorrc");
+
+      expect(util.loadConfig).to.throw(/Invalid or missing minCurNodeVer/);
+    });
+
+    it("should throw if invalid mainExport", function () {
+      sh.cp("test/resource/bad-export.titorrc", ".titorrc");
+
+      expect(util.loadConfig).to.throw(/Invalid or missing mainExport/);
     });
   });
 });

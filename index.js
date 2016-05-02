@@ -6,9 +6,7 @@ var yaml = require("js-yaml");
 
 var cache;
 
-exports.clearCache = function clearCache () {
-  cache = null;
-};
+exports.clearCache = function clearCache () { cache = null };
 
 exports.detectBuild = function detectBuild () {
   var config = exports.loadConfig();
@@ -18,10 +16,18 @@ exports.detectBuild = function detectBuild () {
        : "legacy-shim";
 };
 
-exports.loadConfig = function loadConfig () {
-  if (!cache) cache = yaml.safeLoad(fs.readFileSync(".titorrc", "utf8"));
+exports.loadConfig = function loadConfig (reload) {
+  if (cache && !reload) return cache;
+
+  cache = yaml.safeLoad(fs.readFileSync(".titorrc", "utf8"));
 
   if (typeof cache !== "object") throw Error("Invalid .titorrc");
+
+  if (!semver.valid(cache.minCurNodeVer))
+    throw Error("Invalid or missing minCurNodeVer in .titorrc");
+
+  if (typeof cache.mainExport !== "string")
+    throw Error("Invalid or missing mainExport in .titorrc");
 
   return cache;
 };
