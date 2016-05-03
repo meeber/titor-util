@@ -1,6 +1,6 @@
 {
   "name": "titor-util",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "utilities for the Titor build and bundle assistant",
   "author": "Grant Snodgrass <meeber@gametypething.com>",
   "license": "MIT",
