@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "codecov": "^1.0.1",
+    "coveralls": "^2.11.9",
     "eslint": "^2.9.0",
     "eslint-config-tt": "^1.2.0",
     "istanbul": "^0.4.3",
@@ -23,13 +23,13 @@
     "shelljs": "^0.7.0"
   },
   "scripts": {
-    "cover": "rm -R -f coverage/ && istanbul cover --report lcovonly _mocha",
-    "cover-report": "npm run cover && codecov",
+    "coverage": "rm -R -f coverage/ && istanbul cover _mocha",
+    "coveralls": "npm run coverage; cat coverage/lcov.info | coveralls",
     "lint": "eslint --fix .",
     "postversion": "git checkout dev && git merge master && git push && git push --tags && npm publish",
     "preversion": "git checkout master && git merge dev && npm test",
     "release": "npm version -m 'Finalize v%s'",
     "test": "mocha && npm run lint",
-    "travis": "npm run lint && npm run cover-report"
+    "travis": "npm run lint && npm run coveralls"
   }
 }
