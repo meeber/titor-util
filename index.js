@@ -26,8 +26,8 @@ exports.loadConfig = function loadConfig (reload) {
   if (!semver.valid(cache.minCurNodeVer))
     throw Error("Invalid or missing minCurNodeVer in .titorrc");
 
-  if (typeof cache.mainExport !== "string")
-    throw Error("Invalid or missing mainExport in .titorrc");
+  if (typeof cache.export !== "string")
+    throw Error("Invalid or missing export in .titorrc");
 
   return cache;
 };

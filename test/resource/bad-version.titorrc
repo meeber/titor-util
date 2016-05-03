@@ -1,1 +1,1 @@
-{bundle: true, mainExport: "test", minCurNodeVer: "nacho"}
+{bundle: true, export: "test", minCurNodeVer: "nacho"}

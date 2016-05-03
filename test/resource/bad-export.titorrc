@@ -1,1 +1,1 @@
-{bundle: true, mainExport: 42, minCurNodeVer: "v0.0.1"}
+{bundle: true, export: 42, minCurNodeVer: "v0.0.1"}

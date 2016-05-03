@@ -56,7 +56,7 @@ describe("index.js", function () {
 
   describe(".loadConfig", function () {
     it("should return a config object", function () {
-      expect(util.loadConfig()).to.be.an("object").with.property("mainExport");
+      expect(util.loadConfig()).to.be.an("object").with.property("export");
     });
 
     it("should return the same object if called multiple times", function () {
@@ -86,10 +86,10 @@ describe("index.js", function () {
       expect(util.loadConfig).to.throw(/Invalid or missing minCurNodeVer/);
     });
 
-    it("should throw if invalid mainExport", function () {
+    it("should throw if invalid export", function () {
       sh.cp("test/resource/bad-export.titorrc", ".titorrc");
 
-      expect(util.loadConfig).to.throw(/Invalid or missing mainExport/);
+      expect(util.loadConfig).to.throw(/Invalid or missing export/);
     });
   });
 });
